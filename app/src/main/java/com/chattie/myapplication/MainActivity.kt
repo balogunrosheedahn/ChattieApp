@@ -3,17 +3,18 @@ package com.chattie.myapplication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
+import androidx.appcompat.widget.Toolbar
+
 import androidx.viewpager2.widget.ViewPager2
+import com.chattie.myapplication.adapter.MainPageAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var toolbar: Toolbar
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager2
 
@@ -22,10 +23,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        tabLayout = findViewById(R.id.tab)
+        toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
+        initTabLayout()
+    }
+
+
+
+    private fun initTabLayout() {
+    tabLayout = findViewById(R.id.tab)
 
         viewPager = findViewById(R.id.viewPager)
-        viewPager.adapter = MainPageAdapter(supportFragmentManager, lifecycle)
+        viewPager.adapter =
+            MainPageAdapter(supportFragmentManager, lifecycle)
 
         TabLayoutMediator(tabLayout, viewPager){ tab, position ->
             when(position){
@@ -35,6 +46,8 @@ class MainActivity : AppCompatActivity() {
                 3 -> tab.text ="Calls"
             }
         }.attach()
+
+        viewPager.currentItem = 1
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -45,6 +58,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.new_broadcast ->{
+                goToNewBroadcastActivity()
                 Toast.makeText(this, "New Broadcast Click", Toast.LENGTH_LONG).show()
                 return true
             }
@@ -75,8 +89,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun goToNewGroupActivity(){
         val i = Intent(this, NewGroupActivity::class.java)
-        ContextCompat.startActivity(i)
+        startActivity(i)
     }
+
+    private fun goToNewBroadcastActivity(){
+        val i = Intent(this, NewBroadcastActivity::class.java)
+        startActivity(i)
+    }
+
 
 }
 

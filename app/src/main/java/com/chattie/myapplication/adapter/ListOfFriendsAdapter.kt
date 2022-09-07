@@ -1,4 +1,4 @@
-package com.chattie.myapplication
+package com.chattie.myapplication.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.chattie.myapplication.R
+import com.chattie.myapplication.SampleData
 
- class ListOfFriendsAdapter(val context: Context) : RecyclerView.Adapter<ListOfFriendsAdapter.LFViewHolder>(){
+class ListOfFriendsAdapter(val context: Context) : RecyclerView.Adapter<ListOfFriendsAdapter.LFViewHolder>(){
     private val sampleData = SampleData()
     private val listOfFriends = sampleData.LIST_OF_FRIENDS
 

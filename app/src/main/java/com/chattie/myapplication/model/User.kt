@@ -1,4 +1,4 @@
-package com.chattie.myapplication
+package com.chattie.myapplication.model
 
 data class User(
     val userName: String,
