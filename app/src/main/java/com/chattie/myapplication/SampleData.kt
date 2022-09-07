@@ -21,6 +21,4 @@ class SampleMessages {
         Message("Me", "16:00", "I want to see Dr. Uche tomorrow", "Rosheedah"),
         Message("Me", "16:00", "I want to see Dr. Uche tomorrow", "Rosheedah"),
     )
-
-
 }
